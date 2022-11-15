@@ -1,0 +1,28 @@
+Popular Movies:
+https://api.themoviedb.org/3/movie/popular?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff
+
+Popular TV Shows:
+https://api.themoviedb.org/3/tv/popular?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff
+
+Trending TV Shows:
+https://api.themoviedb.org/3/trending/tv/day?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff
+
+Trending Movies:
+https://api.themoviedb.org/3/trending/movie/day?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff
+
+Access Movie Details by id:
+https://api.themoviedb.org/3/movie/<insert_id_here>/credits?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff&language=en-US
+
+Access TV Show Details by id:
+https://api.themoviedb.org/3/tv/<insert_id_here>/credits?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff&language=en-US
+
+Movie Recommendations:
+https://api.themoviedb.org/3/movie/<insert_movie_id_here>/recommendations?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff&language=en-US&page=1
+
+TV Recommendations:
+https://api.themoviedb.org/3/tv/<insert_tv_show_id_here>/recommendations?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff&language=en-US&page=1
+
+
+Image Base URL (Very important for adding images):
+https://image.tmdb.org/t/p/w500
+add this base url to the img_path field returned from the json object
