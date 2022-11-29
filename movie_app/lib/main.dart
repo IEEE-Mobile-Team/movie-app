@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/Widgets/navBar.dart';
 
 import 'Pages/trending.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: "Netflix",
       debugShowCheckedModeBanner: false,
-      home: Trending(),
+      home: Navbar(),
     );
   }
 }

@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/Constants/trending_shows_data.dart';
 import 'package:http/http.dart' as http;
 
+import '../../Pages/details.dart';
 import 'card.dart';
 
 class Trending_Shows extends StatefulWidget {
@@ -13,9 +13,8 @@ class Trending_Shows extends StatefulWidget {
 }
 
 class _Trending_ShowsState extends State<Trending_Shows> {
-
   @override
-  void initState(){
+  void initState() {
     // TODO: implement initState
     super.initState();
 
@@ -24,18 +23,19 @@ class _Trending_ShowsState extends State<Trending_Shows> {
 
   recieve() async {
     shows = await fetchData();
-    if(shows != null){
+    if (shows != null) {
       setState(() {
         showsLoaded = true;
       });
     }
   }
 
-  Future<List<Result>?> fetchData() async{
+  Future<List<Result>?> fetchData() async {
     var client = http.Client();
-    var uri = Uri.parse("https://api.themoviedb.org/3/trending/tv/day?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff");
+    var uri = Uri.parse(
+        "https://api.themoviedb.org/3/trending/tv/day?api_key=bdd10d2b8f52bc0a5320d5c9d88bd1ff");
     var response = await client.get(uri);
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       return showsFromJson(response.body).results;
     }
     return null;
@@ -51,11 +51,31 @@ class _Trending_ShowsState extends State<Trending_Shows> {
         width: double.infinity,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          itemCount: shows!.length,
+          itemCount: shows?.length ?? 0,
           itemBuilder: (context, index) {
-            return CardView.getCard(shows![index].posterPath,shows![index].name);
+            return InkWell(
+                onTap: () {
+                  setState(() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Details(
+                                  id: shows![index].id,
+                                  title: shows![index].name,
+                                  description: shows![index].overview,
+                                  image: shows![index].posterPath,
+                                  rating: shows![index].voteAverage,
+                                  type: "show",
+                                  adult: shows![index].adult,
+                                )));
+                  });
+                },
+                child: CardView.getCard(
+                    shows![index].posterPath, shows![index].name));
           },
-          separatorBuilder: (context, index) => const SizedBox(width: 15,),
+          separatorBuilder: (context, index) => const SizedBox(
+            width: 15,
+          ),
         ),
       ),
     );

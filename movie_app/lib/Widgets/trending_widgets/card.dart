@@ -12,7 +12,7 @@ class CardView{
           child: SizedBox(
             height: 300,
             width: 200,
-            child: Image.network(baseURL + imgPath, fit: BoxFit.cover,),
+            child: Image.network(baseURL + imgPath , fit: BoxFit.cover,),
           ),
         ),
         const SizedBox(height: 10,),

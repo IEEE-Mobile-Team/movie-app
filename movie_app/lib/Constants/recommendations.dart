@@ -4,13 +4,13 @@
 
 import 'dart:convert';
 
-List<Result>? movies;
-bool moviesLoaded = false;
+List<Result>? recommendations;
+bool recommendationsLoaded = false;
 
-MoviePage moviesFromJson(String str) => MoviePage.fromJson(json.decode(str));
+RecommendationsPage RecommendationsFromJson(String str) => RecommendationsPage.fromJson(json.decode(str));
 
-class MoviePage {
-  MoviePage({
+class RecommendationsPage {
+  RecommendationsPage({
     required this.page,
     required this.results,
     required this.totalPages,
@@ -22,7 +22,7 @@ class MoviePage {
   int totalPages;
   int totalResults;
 
-  factory MoviePage.fromJson(Map<String, dynamic> json) => MoviePage(
+  factory RecommendationsPage.fromJson(Map<String, dynamic> json) => RecommendationsPage(
     page: json["page"] ?? json["page"],
     results: List<Result>.from(json["results"].map((x) => Result.fromJson(x)) ?? json["results"].map((x) => Result.fromJson(x))),
     totalPages: json["total_pages"] ?? json["total_pages"],
@@ -43,7 +43,6 @@ class Result {
     required this.mediaType,
     required this.genreIds,
     required this.popularity,
-    required this.releaseDate,
     required this.video,
     required this.voteAverage,
     required this.voteCount,
@@ -60,25 +59,23 @@ class Result {
   String mediaType;
   List<int> genreIds;
   double popularity;
-  DateTime releaseDate;
   bool video;
   double voteAverage;
   int voteCount;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
     adult: json["adult"] ?? json["adult"],
-    backdropPath: json["backdrop_path"] ?? json["backdrop_path"],
+    backdropPath: json["backdrop_path"] ?? "No Backdrop Path",
     id: json["id"] ?? json["id"],
-    title: json["title"] ?? json["title"],
+    title: json["title"] ?? json["name"],
     originalLanguage: json["original_language"] ?? json["original_language"],
-    originalTitle: json["original_title"] ?? json["original_title"],
-    overview: json["overview"] ?? json["overview"],
-    posterPath: json["poster_path"] ?? json["poster_path"],
+    originalTitle: json["original_title"] ?? "No Original Title",
+    overview: json["overview"] ?? "No Overview",
+    posterPath: json["poster_path"] ?? "Null",
     mediaType: json["media_type"] ?? json["media_type"],
     genreIds: List<int>.from(json["genre_ids"].map((x) => x) ?? json["genre_ids"].map((x) => x)),
     popularity: json["popularity"].toDouble() ?? json["popularity"].toDouble(),
-    releaseDate: DateTime.parse(json["release_date"]),
-    video: json["video"] ?? json["video"],
+    video: json["video"] ?? false,
     voteAverage: json["vote_average"].toDouble() ?? json["vote_average"].toDouble(),
     voteCount: json["vote_count"] ?? json["vote_count"],
   );
