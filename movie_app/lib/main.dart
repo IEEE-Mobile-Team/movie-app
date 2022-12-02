@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/Widgets/navBar.dart';
-
 import 'Pages/trending.dart';
 
 void main() {
