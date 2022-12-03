@@ -84,8 +84,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     icon: Icon(Icons.email_outlined,
                                         color: mPrimaryColor),
                                     hintText: "Enter Your Email",
-                                    hintStyle:
-                                        TextStyle(color: formtext_color)),
+                                    hintStyle: TextStyle(color: formtext_color),
+                                    errorStyle: TextStyle(color: txt_color)),
                               ),
                             ),
                           ),
@@ -123,13 +123,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   }
 
   Future ForgotPass() async {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => Center(
-              child: CircularProgressIndicator(color: button_color),
-            ));
-
     try {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailController.text.trim());
