@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:movie_app/Constants/trending_shows_data.dart';
 import 'package:http/http.dart' as http;
@@ -15,7 +17,6 @@ class Trending_Shows extends StatefulWidget {
 class _Trending_ShowsState extends State<Trending_Shows> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     recieve();
@@ -45,7 +46,8 @@ class _Trending_ShowsState extends State<Trending_Shows> {
   Widget build(BuildContext context) {
     return Visibility(
       visible: showsLoaded,
-      replacement: const Center(child: CircularProgressIndicator()),
+      replacement: const SizedBox(
+          height: 350, child: Center(child: CircularProgressIndicator())),
       child: SizedBox(
         height: 370,
         width: double.infinity,

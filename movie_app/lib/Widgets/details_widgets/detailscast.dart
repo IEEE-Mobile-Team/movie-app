@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_is_empty, no_logic_in_create_state
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../Constants/app_consts.dart';
@@ -36,6 +38,7 @@ class _DetailsCastState extends State<DetailsCast> {
 
   Future<List<Result>?> fetchData() async {
     var client = http.Client();
+    // ignore: prefer_typing_uninitialized_variables
     var uri;
     if (type == "movie") {
       uri = Uri.parse(
@@ -53,64 +56,85 @@ class _DetailsCastState extends State<DetailsCast> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Cast",
-          style: TextStyle(
-              fontSize: 24, color: txt_color, fontWeight: FontWeight.bold),
-        ),
-        Divider(
-          height: 15,
-        ),
-        Visibility(
-          visible: detailsLoaded,
-          replacement: const Center(child: CircularProgressIndicator()),
-          child: SizedBox(
-            height: 375,
-            width: double.infinity,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    SizedBox(
-                        width: 200,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(baseURL + details![index].path),
-                        )),
-                    Spacer(),
-                    SizedBox(
-                        width: 200,
-                        child: Text(
-                          details![index].name,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: txt_color,
-                              fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        )),
-                    Spacer(),
-                    SizedBox(
-                        width: 200,
-                        child: Text(
-                          details![index].character,
-                          style: TextStyle(fontSize: 18, color: txt_color),
-                          overflow: TextOverflow.ellipsis,
-                        ))
-                  ],
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(
-                width: 20,
-              ),
+    if (details?.length != 0) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Visibility(
+            visible: detailsLoaded,
+            replacement: const Center(child: CircularProgressIndicator()),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  child: Text(
+                    "Cast",
+                    style: TextStyle(
+                        fontSize: 24,
+                        color: txt_color,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const Divider(
+                  height: 15,
+                ),
+                SizedBox(
+                  height: 375,
+                  width: double.infinity,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: ((details?.length ?? 0) < 10)
+                        ? (details?.length ?? 0)
+                        : 10,
+                    itemBuilder: (context, index) {
+                      if (details![index].path != "No Profile Pic") {
+                        return Column(
+                          children: [
+                            SizedBox(
+                                width: 200,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.network(
+                                      baseURL + details![index].path),
+                                )),
+                            const Spacer(),
+                            SizedBox(
+                                width: 200,
+                                child: Text(
+                                  details![index].name,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: txt_color,
+                                      fontWeight: FontWeight.bold),
+                                  overflow: TextOverflow.ellipsis,
+                                )),
+                            const Spacer(),
+                            SizedBox(
+                                width: 200,
+                                child: Text(
+                                  details![index].character,
+                                  style:
+                                      TextStyle(fontSize: 18, color: txt_color),
+                                  overflow: TextOverflow.ellipsis,
+                                ))
+                          ],
+                        );
+                      } else {
+                        return const Text("");
+                      }
+                    },
+                    separatorBuilder: (context, index) => const SizedBox(
+                      width: 20,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
+    } else {
+      return const Text("");
+    }
   }
 }

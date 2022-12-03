@@ -17,7 +17,7 @@ class DetailsInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Divider(
+        const Divider(
           height: 50,
         ),
         Text(
@@ -29,7 +29,7 @@ class DetailsInfo extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Divider(
+        const Divider(
           height: 50,
         ),
         Text(
@@ -37,14 +37,14 @@ class DetailsInfo extends StatelessWidget {
           style: TextStyle(
               fontSize: 24, color: txt_color, fontWeight: FontWeight.bold),
         ),
-        Divider(
+        const Divider(
           height: 15,
         ),
         Text(
           description,
           style: TextStyle(fontSize: 24, color: txt_color),
         ),
-        Divider(
+        const Divider(
           height: 30,
         ),
         Text(
@@ -52,14 +52,14 @@ class DetailsInfo extends StatelessWidget {
           style: TextStyle(
               fontSize: 24, color: txt_color, fontWeight: FontWeight.bold),
         ),
-        Divider(
+        const Divider(
           height: 15,
         ),
         Text(
-          rating.round().toString() + "/10",
+          "${rating.round()}/10",
           style: TextStyle(fontSize: 24, color: txt_color),
         ),
-        Divider(
+        const Divider(
           height: 30,
         ),
       ],

@@ -1,6 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:movie_app/Pages/movies.dart';
 import 'package:movie_app/Pages/profile.dart';
 import 'package:movie_app/Pages/shows.dart';
@@ -17,38 +17,35 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   int currentIndex = 0;
-  final screens = [
-    Movies(),
-    Shows(),
-    Trending(),
-    Profile()
-  ];
+  final screens = [const Movies(), const Shows(), const Trending(), const Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
         unselectedItemColor: idle_color,
         selectedItemColor: active_color,
-        backgroundColor: background_color,
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.movie),
+            icon: const Icon(Icons.movie),
             label: 'Movies',
+            backgroundColor: background_color,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.slideshow),
+            icon: const Icon(Icons.slideshow),
             label: 'Shows',
+            backgroundColor: background_color,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up),
+            icon: const Icon(Icons.trending_up),
             label: 'Trending',
+            backgroundColor: background_color,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             label: 'Profile',
+            backgroundColor: background_color,
           ),
         ],
       ),

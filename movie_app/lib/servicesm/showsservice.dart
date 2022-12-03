@@ -10,7 +10,6 @@ class ShowService{
     var response = await client.get(uri);
     if(response.statusCode == 200){
       var json = response.body;
-      print(showsFromJson(json).results.length);
       return showsFromJson(json).results;
     }
     return null;

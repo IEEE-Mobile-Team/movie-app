@@ -1,10 +1,11 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, no_logic_in_create_state
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:movie_app/Widgets/details_widgets/card.dart';
 import '../../Constants/app_consts.dart';
 import '../../Constants/recommendations.dart';
 import '../../Pages/details.dart';
-import '../trending_widgets/card.dart';
 
 class DetailsRecommendations extends StatefulWidget {
   const DetailsRecommendations(
@@ -65,7 +66,7 @@ class _DetailsRecommendationsState extends State<DetailsRecommendations> {
           style: TextStyle(
               fontSize: 24, color: txt_color, fontWeight: FontWeight.bold),
         ),
-        Divider(
+        const Divider(
           height: 15,
         ),
         Visibility(
@@ -102,7 +103,7 @@ class _DetailsRecommendationsState extends State<DetailsRecommendations> {
                           image: recommendations![index].posterPath,
                           title: recommendations![index].title));
                 } else {
-                  return Text("");
+                  return const Text("");
                 }
               },
               separatorBuilder: (context, index) => const SizedBox(

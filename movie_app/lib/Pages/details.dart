@@ -53,7 +53,7 @@ class _DetailsState extends State<Details> {
                         description: widget.description,
                         rating: widget.rating),
                     DetailsCast(id: widget.id, type: widget.type),
-                    Divider(
+                    const Divider(
                       height: 30,
                     ),
                     DetailsRecommendations(id: widget.id, type: widget.type)

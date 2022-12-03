@@ -46,7 +46,8 @@ class _Trending_MoviesState extends State<Trending_Movies> {
   Widget build(BuildContext context) {
     return Visibility(
       visible: moviesLoaded,
-      replacement: const Center(child: CircularProgressIndicator()),
+      replacement: const SizedBox(
+          height: 350, child: Center(child: CircularProgressIndicator())),
       child: SizedBox(
         height: 375,
         width: double.infinity,
@@ -61,13 +62,14 @@ class _Trending_MoviesState extends State<Trending_Movies> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => Details(
-                                id: movies![index].id,
-                                title: movies![index].title,
-                                description: movies![index].overview,
-                                image: movies![index].posterPath,
-                                rating: movies![index].voteAverage,
-                                type: movies![index].mediaType,
-                                adult: movies![index].adult,)));
+                                  id: movies![index].id,
+                                  title: movies![index].title,
+                                  description: movies![index].overview,
+                                  image: movies![index].posterPath,
+                                  rating: movies![index].voteAverage,
+                                  type: movies![index].mediaType,
+                                  adult: movies![index].adult,
+                                )));
                   });
                 },
                 child: CardView.getCard(
